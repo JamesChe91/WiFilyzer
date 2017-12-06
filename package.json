@@ -1,0 +1,22 @@
+{
+  "name": "WiFilyzer",
+  "version": "0.0.1",
+  "description": "Wi-Fi Analyzer",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": "https://github.com/JamesChe91/WiFilyzer",
+  "keywords": [
+    "Electron",
+    "quick",
+    "start",
+    "tutorial",
+    "demo"
+  ],
+  "author": "https://github.com/JamesChe91, https://github.com/ltciro, https://github.com/eseguro, https://github.com/joserendon",
+  "license": "GNU GENERAL PUBLIC LICENSE v3.0",
+  "devDependencies": {
+    "electron": "~1.7.8"
+  }
+}
