@@ -1,0 +1,11 @@
+<div class="container">  
+    <div class="col span_1_of_2">
+      <ul [ngModel]="returnNetworks" ngDefaultControl>
+        <li class="title" *ngFor="let net of returnNetworks">{{net.ssid == '' ? 'Red Oculta' : net.ssid}}</li>
+      </ul>
+    </div>
+    <div class="col span_1_of_2">
+      <button (click)="scanNetworks()">Refrescar</button>
+    </div>
+
+</div>
