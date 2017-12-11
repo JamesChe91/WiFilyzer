@@ -1,11 +1,14 @@
 <div class="container">  
     <div class="col span_1_of_2">
-      <ul [ngModel]="returnNetworks" ngDefaultControl>
-        <li class="title" *ngFor="let net of returnNetworks">{{net.ssid == '' ? 'Red Oculta' : net.ssid}}</li>
-      </ul>
+        <h3>Redes disponibles</h3>
+      <ul [ngModel]="returnNetworks" ngDefaultControl>         
+        <li *ngFor="let net of returnNetworks">
+            <mat-icon>network_wifi</mat-icon>
+          {{net.ssid == '' ? 'Red Oculta' : net.ssid}}</li>
+        </ul>
     </div>
     <div class="col span_1_of_2">
-      <button (click)="scanNetworks()">Refrescar</button>
+      <button mat-raised-button (click)="scanNetworks()">Refrescar</button>
     </div>
 
 </div>
