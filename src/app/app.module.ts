@@ -13,6 +13,8 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { ElectronService } from './providers/electron.service';
 import { WifiService } from './providers/wifi.service';
+import { MaterialModule } from './material/material.module';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -23,8 +25,10 @@ import { WifiService } from './providers/wifi.service';
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    AppRoutingModule
-  ],
+    AppRoutingModule,   
+    MaterialModule, 
+    BrowserAnimationsModule    
+  ], 
   providers: [ElectronService, WifiService],
   bootstrap: [AppComponent]
 })
