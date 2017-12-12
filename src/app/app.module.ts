@@ -21,13 +21,15 @@ import { NvD3Module } from 'ng2-nvd3';
 // d3 and nvd3 should be included somewhere
 import 'd3';
 import 'nvd3';
+import { GraphicComponent } from './components/graphic/graphic.component';
 import { LineChartComponent } from './components/line-chart/line-chart.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    LineChartComponent
+    GraphicComponent,
+	LineChartComponent
   ],
   imports: [
     BrowserModule,
@@ -35,8 +37,8 @@ import { LineChartComponent } from './components/line-chart/line-chart.component
     HttpClientModule,
     AppRoutingModule,   
     MaterialModule, 
-    BrowserAnimationsModule, 
-    NvD3Module     
+    BrowserAnimationsModule,
+    NvD3Module 
   ], 
   providers: [ElectronService, WifiService],
   bootstrap: [AppComponent]

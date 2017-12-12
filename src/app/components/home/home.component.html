@@ -1,15 +1,15 @@
-<div class="container">  
-    <div class="col span_1_of_2">
-        <h3>Redes disponibles</h3>
-      <ul [ngModel]="returnNetworks" ngDefaultControl>         
-        <li *ngFor="let net of returnNetworks">
-            <mat-icon>network_wifi</mat-icon>
-          {{net.ssid == '' ? 'Red Oculta' : net.ssid}}</li>
-        </ul>
-    </div>
-    <div class="col span_1_of_2">
-      <button mat-raised-button (click)="scanNetworks()">Refrescar</button>
-      <app-line-chart></app-line-chart>
-    </div>
-
-</div>
+<div class="container">
+  <div class="col span_1_of_2">
+    <mat-list>
+      <h3 mat-subheader>Redes Disponibles</h3>
+      <mat-list-item *ngFor="let net of returnNetworks">
+        <mat-icon>network_wifi</mat-icon>
+        <h4 mat-line>{{net.ssid == '' ? 'Red Oculta' : net.ssid}}</h4>
+        <p mat-line>{{net.bssid}}</p>
+      </mat-list-item>
+    </mat-list>
+  </div>
+  <div class="col span_1_of_2">
+    <button mat-raised-button (click)="scanNetworks()">Refrescar</button>
+  </div>
+</div> 

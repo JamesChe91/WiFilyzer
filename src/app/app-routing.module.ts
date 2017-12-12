@@ -1,11 +1,17 @@
 import { HomeComponent } from './components/home/home.component';
+import { GraphicComponent } from './components/graphic/graphic.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
     {
-        path: '',
+        path: 'Home',
         component: HomeComponent
+    }
+    ,
+    {
+        path:'Graphic',
+        component:GraphicComponent
     }
 ];
 
