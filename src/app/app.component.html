@@ -1,9 +1,33 @@
 <mat-toolbar color="primary">
-    <span><mat-icon>mood</mat-icon></span>
+    <img src='../assets/favicon.png' class="brand-logo" />
     <span>WiFilyzer</span>
-    <!-- <button mat-icon-button [mat-menu-trigger-for]="menu">
-      <mat-icon>more_vert</mat-icon>
-    </button> -->
-  </mat-toolbar>
+    <span class="spacer"></span>
+    <mat-button-toggle-group #gpHiddenNet="matButtonToggleGroup">
+        <mat-button-toggle value="on" checked='true' matTooltip="Ver Redes Ocultas" matTooltipPosition="below">
+            <mat-icon>remove_red_eye</mat-icon>
+        </mat-button-toggle>
+        <mat-button-toggle value="off" matTooltip="No Ver Redes Ocultas" matTooltipPosition="below">
+            <mat-icon>visibility_off</mat-icon>
+        </mat-button-toggle>
+    </mat-button-toggle-group>
+    <span class="spacer"></span>
+    <mat-icon>translate</mat-icon>
+    <mat-form-field>
+        <mat-select placeholder="Language" [(ngModel)]="languageSelected" name="language">
+            <mat-option *ngFor="let language of languages" [value]="language.value">
+                {{ language.viewValue }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <span class="spacer"></span>
+    <button mat-icon-button [matMenuTriggerFor]="mainMenu">
+        <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #mainMenu="matMenu" name="menuOption">
+        <button (click)="menuOptionSelected=option.value" mat-menu-item *ngFor="let option of options" routerLink='/{{option.value}}'>
+            <mat-icon> {{option.value == menuOptionSelected ? 'radio_button_checked' : 'radio_button_unchecked'}}</mat-icon>
+            <span>{{option.viewValue}}</span>
+        </button>
+    </mat-menu>
+</mat-toolbar>
 <router-outlet></router-outlet>
-
