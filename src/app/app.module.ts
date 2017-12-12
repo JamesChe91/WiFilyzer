@@ -29,17 +29,17 @@ import { LineChartComponent } from './components/line-chart/line-chart.component
     AppComponent,
     HomeComponent,
     GraphicComponent,
-	LineChartComponent
+    LineChartComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    AppRoutingModule,   
-    MaterialModule, 
+    AppRoutingModule,
+    MaterialModule,
     BrowserAnimationsModule,
-    NvD3Module 
-  ], 
+    NvD3Module
+  ],
   providers: [ElectronService, WifiService],
   bootstrap: [AppComponent]
 })
