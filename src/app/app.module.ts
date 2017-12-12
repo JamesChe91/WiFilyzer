@@ -14,12 +14,20 @@ import { AppRoutingModule } from './app-routing.module';
 import { ElectronService } from './providers/electron.service';
 import { WifiService } from './providers/wifi.service';
 import { MaterialModule } from './material/material.module';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { NvD3Module } from 'ng2-nvd3';
+
+// d3 and nvd3 should be included somewhere
+import 'd3';
+import 'nvd3';
+import { LineChartComponent } from './components/line-chart/line-chart.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    LineChartComponent
   ],
   imports: [
     BrowserModule,
@@ -27,7 +35,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     HttpClientModule,
     AppRoutingModule,   
     MaterialModule, 
-    BrowserAnimationsModule    
+    BrowserAnimationsModule, 
+    NvD3Module     
   ], 
   providers: [ElectronService, WifiService],
   bootstrap: [AppComponent]
