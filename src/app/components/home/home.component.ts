@@ -20,7 +20,7 @@ export class HomeComponent implements OnInit {
       if (init) {
         this.wifi.scanNetworks().then(a => {
           if (a != null) {
-            a.map(l => console.log(l.ssid));
+            a.map(l => console.log(l));
             this.returnNetworks = a;
           }
         })

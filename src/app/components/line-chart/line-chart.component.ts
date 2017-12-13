@@ -1,4 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { WifiService } from './../../providers/wifi.service';
+import { Network } from './../../interfaces/network';
 declare let d3: any;
 
 @Component({
@@ -11,67 +13,72 @@ export class LineChartComponent implements OnInit {
   options;
   data;
   chartType;
-  constructor() { }
+  dBmMin: number;
+  dBmMax: number;
+  chMin: number;
+  chMax: number;
+  constructor(public wifi: WifiService) { }
 
   ngOnInit() {
     this.options = {
       chart: {
         type: 'lineChart',
         height: 450,
-        margin : {
+        margin: {
           top: 20,
           right: 20,
           bottom: 40,
           left: 55
         },
-        x: function(d){ return d.x; },
-        y: function(d){ return d.y; },
+        x: function (d) { return d.x; },
+        y: function (d) { return d.y; },
         useInteractiveGuideline: true,
         xAxis: {
-          axisLabel: 'Time (ms)'
+          axisLabel: 'Channels'
         },
         yAxis: {
-          axisLabel: 'Voltage (v)',
-          tickFormat: function(d){
-            return d3.format('.02f')(d);
-          },
-          axisLabelDistance: -10
+          axisLabel: 'Signal (dBm)'
         }
       }
     };
-  
-    this.data = this.sinAndCos();
+    this.data = this.lineChartData();
   }
-  sinAndCos() {
-    var sin = [],sin2 = [],
-      cos = [];
-  
-    //Data is represented as an array of {x,y} pairs.
-    for (var i = 0; i < 100; i++) {
-      sin.push({x: i, y: Math.sin(i/10)});
-      sin2.push({x: i, y: i % 10 == 5 ? null : Math.sin(i/10) *0.25 + 0.5});
-      cos.push({x: i, y: .5 * Math.cos(i/10+ 2) + Math.random() / 10});
-    }
-  
-    //Line chart data should be sent as an array of series objects.
+  generateSingleArray(wifi: Network) {
+    const data = [];
     return [
       {
-        values: sin,      //values - represents the array of {x,y} data points
-        key: 'Sine Wave', //key  - the name of the series.
-        color: '#ff7f0e'  //color - optional: choose your own line color.
-      },
-      {
-        values: cos,
-        key: 'Cosine Wave',
-        color: '#2ca02c'
-      },
-      {
-        values: sin2,
-        key: 'Another sine wave',
-        color: '#7777ff',
-        area: true      //area - set to true if you want this line to turn into a filled area chart.
+        values: [{ x: wifi.channel, y: wifi.signal_level }],
+        key: wifi.ssid,
+        color: this.getRandomColor()
       }
     ];
+  }
+  getRandomColor() {
+    const letters = '0123456789ABCDEF';
+    let color = '#';
+    for (let i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  }
+  lineChartData() {
+    const allData = [];
+    this.wifi.initWifi().then(init => {
+      if (init) {
+        this.wifi.scanNetworks().then(a => {
+          if (a != null) {
+            // this.dBmMin = Math.min.apply(Math, a.map(function (o) { return Math.abs(o.signal_level); }));
+            // this.dBmMax = Math.max.apply(Math, a.map(function (o) { return Math.abs(o.signal_level); }));
+            // this.chMin = Math.min.apply(Math, a.map(function (o) { return o.channel; }));
+            // this.chMax = Math.max.apply(Math, a.map(function (o) { return o.channel; }));
+
+            a.map(l => { allData.push(this.generateSingleArray(l)[0]); });
+            console.log(JSON.stringify(allData));
+            return allData;
+          }
+        })
+      }
+    });
   }
 
 }
