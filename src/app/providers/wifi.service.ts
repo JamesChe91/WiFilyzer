@@ -20,16 +20,9 @@ export class WifiService {
   }
   scanNetworks() {
     return new Promise<Network[]>((res, rej) => {
-      this.wifiObject.scan((err, currentNetworks) => {
-        if (err) {
-          console.log(err);
-          res(null);
-        } else {
-          res(currentNetworks.map(it => {
-            return <Network>JSON.parse(JSON.stringify(it))
-          }));
-        }
-      });
+      this.wifiObject.scan()
+      .then(networks => res(networks.map(item => <Network>JSON.parse(JSON.stringify(item)))))
+      .catch(error => console.log(error));      
     });
 
   }
