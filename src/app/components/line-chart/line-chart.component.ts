@@ -10,6 +10,7 @@ declare let d3: any;
   encapsulation: ViewEncapsulation.None
 })
 export class LineChartComponent implements OnInit {
+  isDataAvailable:boolean = false;
   options;
   data;
   chartType;
@@ -37,11 +38,12 @@ export class LineChartComponent implements OnInit {
           axisLabel: 'Channels'
         },
         yAxis: {
-          axisLabel: 'Signal (dBm)'
+          axisLabel: 'Signal (dBm)',
+          axisLabelDistance: -10
         }
       }
     };
-    this.data = this.lineChartData();
+    this.lineChartData();
   }
   generateSingleArray(wifi: Network) {
     const data = [];
@@ -74,7 +76,8 @@ export class LineChartComponent implements OnInit {
 
             a.map(l => { allData.push(this.generateSingleArray(l)[0]); });
             console.log(JSON.stringify(allData));
-            return allData;
+            this.data =  allData;
+            this.isDataAvailable = true;
           }
         })
       }
