@@ -5,13 +5,14 @@ import { Injectable } from '@angular/core';
 import { ipcRenderer } from 'electron';
 import * as wifiModule from 'node-wifi';
 import * as childProcess from 'child_process';
-
+import * as osModule from 'os';
 @Injectable()
 export class ElectronService {
 
   ipcRenderer: typeof ipcRenderer;
   childProcess: typeof childProcess;
   wifiModule: typeof wifiModule;
+  osModule: typeof osModule;
 
   constructor() {
     // Conditional imports
@@ -19,6 +20,7 @@ export class ElectronService {
       this.ipcRenderer = window.require('electron').ipcRenderer;
       this.childProcess = window.require('child_process');
       this.wifiModule = require('node-wifi');
+      this.osModule = require('os');
     }
   }
 
@@ -28,6 +30,12 @@ export class ElectronService {
   getWifi = () => {
     if (this.isElectron()) {
       return this.wifiModule;
+    }
+  }
+
+  getNetworkInterfaces = () => {
+    if (this.isElectron()) {
+      return this.osModule.networkInterfaces();
     }
   }
 }

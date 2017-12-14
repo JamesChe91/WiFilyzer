@@ -3,6 +3,7 @@ import { HomeComponent } from './components/home/home.component';
 import { GraphicComponent } from './components/graphic/graphic.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { CurrentConnectionComponent } from './components/current-connection/current-connection.component';
 
 const routes: Routes = [
     {
@@ -19,10 +20,15 @@ const routes: Routes = [
         path: 'Channels',
         component: LineChartComponent
     }
+    ,
+    {
+        path: 'ListAP',
+        component: CurrentConnectionComponent
+    }
 ];
 
 @NgModule({
-    imports: [RouterModule.forRoot(routes, {useHash: true})],
+    imports: [RouterModule.forRoot(routes, { useHash: true })],
     exports: [RouterModule]
 })
 export class AppRoutingModule { }

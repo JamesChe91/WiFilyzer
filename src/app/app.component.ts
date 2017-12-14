@@ -22,7 +22,7 @@ export class AppComponent {
     { value: 'Channels', viewValue: 'Gráfico de Canales' },
     { value: 'OtroR', viewValue: 'Gráfico de tiempo' },
     { value: 'OtroR2', viewValue: 'Puntuación de canales' },
-    { value: 'OtroR3', viewValue: ' Lista de AP' },
+    { value: 'ListAP', viewValue: ' Lista de AP' },
     { value: 'OtroR4', viewValue: 'Medidor de Señal' }
   ];
 

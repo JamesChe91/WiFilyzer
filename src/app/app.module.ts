@@ -23,13 +23,15 @@ import 'd3';
 import 'nvd3';
 import { GraphicComponent } from './components/graphic/graphic.component';
 import { LineChartComponent } from './components/line-chart/line-chart.component';
+import { CurrentConnectionComponent } from './components/current-connection/current-connection.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     GraphicComponent,
-    LineChartComponent
+    LineChartComponent,
+    CurrentConnectionComponent
   ],
   imports: [
     BrowserModule,
