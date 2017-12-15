@@ -4,8 +4,12 @@
       <mat-icon class="connectedIcon">done</mat-icon>
     </div>
     <mat-card-title>Lista de Puntos de Acceso</mat-card-title>
-    <mat-card-subtitle> Conectado a: <b>{{this.ssid}} ({{this.bssid}})</b></mat-card-subtitle>
-    <mat-card-subtitle>Dirección IP: <b>{{this.address}}</b></mat-card-subtitle>
+    <mat-card-subtitle> Conectado a:
+      <b>{{this.ssid}} {{this.bssid}}</b>
+    </mat-card-subtitle>
+    <mat-card-subtitle>Dirección IP:
+      <b>{{this.address}}</b>
+    </mat-card-subtitle>
   </mat-card-header>
   <!-- <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu"> -->
   <!-- <mat-card-content></mat-card-content> -->
