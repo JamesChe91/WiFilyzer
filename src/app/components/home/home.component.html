@@ -1,15 +1,8 @@
-<div class="container">
-  <div class="col span_1_of_2">
-    <mat-list>
-      <h3 mat-subheader>Redes Disponibles</h3>
-      <mat-list-item *ngFor="let net of returnNetworks">
-        <mat-icon>network_wifi</mat-icon>
-        <h4 mat-line>{{net.ssid == '' ? 'Red Oculta' : net.ssid}}</h4>
-        <p mat-line>{{net.bssid}}</p>
-      </mat-list-item>
-    </mat-list>
-  </div>
-  <div class="col span_1_of_2">
-    <button mat-raised-button (click)="scanNetworks()">Refrescar</button>
-  </div>
-</div> 
+<button mat-raised-button color="accent" (click)="scanNetworks()">Refrescar</button>
+<mat-list>
+  <h3 mat-subheader>Redes Disponibles</h3>
+  <mat-list-item *ngFor="let net of returnNetworks">
+    <mat-icon mat-list-icon>network_wifi</mat-icon>
+    <h4 mat-line>{{net.ssid == '' ? 'Red Oculta' : net.ssid}}</h4>   
+  </mat-list-item>
+</mat-list>

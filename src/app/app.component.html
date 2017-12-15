@@ -12,14 +12,14 @@
     <span class="spacer"></span>
     <mat-icon>translate</mat-icon>
     <mat-form-field>
-        <mat-select placeholder="Language" [(ngModel)]="languageSelected" name="language">
+        <mat-select [(ngModel)]="languageSelected" name="language" matTooltip="Lenguaje" matTooltipPosition="below">
             <mat-option *ngFor="let language of languages" [value]="language.value">
                 {{ language.viewValue }}
             </mat-option>
         </mat-select>
     </mat-form-field>
     <span class="spacer"></span>
-    <button mat-icon-button [matMenuTriggerFor]="mainMenu">
+    <button mat-icon-button [matMenuTriggerFor]="mainMenu" matTooltip="Menú" matTooltipPosition="below">
         <mat-icon>more_vert</mat-icon>
     </button>
     <mat-menu #mainMenu="matMenu" name="menuOption">
