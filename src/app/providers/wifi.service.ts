@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 
 import { ElectronService } from './electron.service';
 import { Network } from './../interfaces/network';
+import { CurrentNetwork } from './../interfaces/current-network';
+import { OsNetworkInterface } from './../interfaces/os-network-interface';
 
 @Injectable()
 export class WifiService {
@@ -21,9 +23,25 @@ export class WifiService {
   scanNetworks() {
     return new Promise<Network[]>((res, rej) => {
       this.wifiObject.scan()
-      .then(networks => res(networks.map(item => <Network>JSON.parse(JSON.stringify(item)))))
-      .catch(error => console.log(error));      
+        .then(networks => res(networks.map(item => <Network>JSON.parse(JSON.stringify(item)))))
+        .catch(error => console.log(error));
     });
 
+  }
+
+  getCurrentConnections() {
+    return new Promise<CurrentNetwork[]>((res, rej) => {
+      this.wifiObject.getCurrentConnections()
+        .then(CurrentNetwork => res(CurrentNetwork.map(item => <Network>JSON.parse(JSON.stringify(item)))))
+        .catch(error => console.log(error));
+    });
+  }
+  getNetworkInterfaces() {
+    return new Promise<OsNetworkInterface[]>((res, rej) => {
+      let IPv4_Data = JSON.parse(JSON.stringify(this.electronService.getNetworkInterfaces()))["Wi-Fi"].filter(item => {
+        return item.family == "IPv4";
+      });
+      res(IPv4_Data);
+    });
   }
 }
