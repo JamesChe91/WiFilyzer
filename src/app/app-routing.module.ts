@@ -1,9 +1,8 @@
-import { LineChartComponent } from './components/line-chart/line-chart.component';
 import { HomeComponent } from './components/home/home.component';
-import { GraphicComponent } from './components/graphic/graphic.component';
+//import { GraphicComponent } from './components/graphic/graphic.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { CurrentConnectionComponent } from './components/current-connection/current-connection.component';
+
 
 const routes: Routes = [
     {
@@ -18,14 +17,15 @@ const routes: Routes = [
     ,
     {
         path: 'Channels',
-        component: LineChartComponent
+        loadChildren: 'app/components/line-chart/line-chart.module#LineChartModule'
     }
     ,
     {
         path: 'ListAP',
-        component: CurrentConnectionComponent
+        loadChildren: 'app/components/current-connection/current-connection.module#CurrentConnectionModule'
     }
 ];
+
 
 @NgModule({
     imports: [RouterModule.forRoot(routes, { useHash: true })],
