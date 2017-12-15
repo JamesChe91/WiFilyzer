@@ -37,6 +37,7 @@ export class WifiService {
     });
   }
   getNetworkInterfaces() {
+    console.log(this.electronService.getNetworkInterfaces());
     return new Promise<OsNetworkInterface[]>((res, rej) => {
       let IPv4_Data = JSON.parse(JSON.stringify(this.electronService.getNetworkInterfaces()))["Wi-Fi"].filter(item => {
         return item.family == "IPv4";
