@@ -59,7 +59,7 @@
     "@angular/router": "5.0.3",
     "core-js": "2.4.1",    
     "enhanced-resolve": "3.3.0",
-    "node-wifi": "^2.0.2",
+    "node-wifi": "^2.0.12",
     "rxjs": "5.5.2",
     "zone.js": "0.8.17"
   },
